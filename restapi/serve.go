@@ -7,6 +7,7 @@ import (
 
 func Serve(registry *core.PluginRegistry, address string) (err error) {
 	r := gin.New()
+	r.SetTrustedProxies(nil) // or set to a specific list of trusted proxies
 
 	// Middleware
 	r.Use(gin.Logger())
