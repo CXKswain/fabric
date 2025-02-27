@@ -53,7 +53,7 @@ func NewChatHandler(r *gin.Engine, registry *core.PluginRegistry, db *fsdb.Db) *
 func (h *ChatHandler) HandleChat(c *gin.Context) {
 	var request ChatRequest
 
-	if err := c.BindJSON(&request); err != nil {
+	if err := c.ShouldBindJSON(&request); err != nil {
 		log.Printf("Error binding JSON: %v", err)
 		c.Writer.Header().Set("Strict-Transport-Security", "max-age=63072000; includeSubDomains")
 		c.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Invalid request format: %v", err)})

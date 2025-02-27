@@ -91,6 +91,9 @@ func (h *ConfigHandler) UpdateConfig(c *gin.Context) {
 	}
 
 	if err := c.ShouldBindJSON(&config); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON data"})
+		return
+	}
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
