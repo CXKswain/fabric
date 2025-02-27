@@ -80,6 +80,7 @@ type FabricResponseFormat struct {
 
 func ServeOllama(registry *core.PluginRegistry, address string, version string) (err error) {
 	r := gin.New()
+	r.TrustProxy = true
 
 	// Middleware
 	r.Use(gin.Logger())
